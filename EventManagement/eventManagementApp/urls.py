@@ -18,4 +18,6 @@ from eventManagementApp import views
 
 urlpatterns = [
     path('', views.homepage, name='home'),
+    path('eventregistration/', views.eventRegisterPage, name='eventregister'),
+    path('participantregistration/', views.participantRegisterPage, name='participantregister'),
     ]

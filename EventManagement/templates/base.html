@@ -4,9 +4,15 @@
 
 <html>
     <head>
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'base.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         {% block head %}
         {% endblock %}
     </head>
@@ -16,8 +22,8 @@
                 <a class="active" href="#home"><i class="fa fa-fw fa-home"></i>Home</a>
             </div>
             <div class="container right">
-                <a href="#event"><i class="fa fa-fw fa-calendar"></i>Event Registration</a>
-                <a href="#participant"><i class="fa fa-fw fa-user"></i>Participant Registration</a>
+                <a href="{% url 'eventregister' %}"><i class="fa fa-fw fa-calendar"></i>Event Registration</a>
+                <a href="{% url 'participantregister' %}"><i class="fa fa-fw fa-user"></i>Participant Registration</a>
                 <a href="#about"><i class="fa fa-fw fa-dashboard"></i>Event Dashboard</a>
             </div>
         </div>

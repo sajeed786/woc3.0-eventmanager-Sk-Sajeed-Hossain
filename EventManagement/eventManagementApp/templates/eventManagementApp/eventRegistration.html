@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Event Registration
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'eventManagementApp/CSS/eventreg.css' %}">
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="{% url 'eventregister' %}">
+        {% csrf_token %}
+
+        <section class="event-registration">
+            <h2>Register the Event to host</h2>
+            <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+            <hr>
+            {% include 'sections/messages.html' %}
+            <p>
+                <label for="name">
+                  <span>Name: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="text" id="name" name="event_name" required>
+            </p>
+            <p>
+                <label for="description">
+                  <span>Description: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <textarea id="description" name="event_description" placeholder="Enter the event description here"></textarea>
+            </p>
+
+            <p>
+                <label for="venue">
+                  <span>Location: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="text" id="venue" name="venue" required>
+            </p>
+
+            <p>
+                <label for="poster_url">
+                  <span>Link to Event Poster: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="url" id="poster_url" name="poster_url" required>
+            </p>
+            
+            <div class="timestamp">
+                <p>
+                    <label for="start_date">
+                    <span>Start Date: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="date" id="start_date" name="start_date" required>
+                </p>
+
+                <p>
+                    <label for="start_time">
+                    <span>Start Time: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="time" id="start_time" name="start_time" required>
+                </p>
+            </div>
+
+            <div class="timestamp">
+                <p>
+                    <label for="end_date">
+                    <span>End Date: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="date" id="end_date" name="end_date" required>
+                </p>
+
+                <p>
+                    <label for="end_time">
+                    <span>End Time: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="time" id="end_time" name="end_time" required>
+                </p>
+            </div>
+
+            <div class="timestamp">
+                <p>
+                    <label for="reg_end_date">
+                    <span>Registration End Date: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="date" id="reg_end_date" name="reg_end_date" required>
+                </p>
+
+                <p>
+                    <label for="reg_end_time">
+                    <span>Registration End Time: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="time" id="reg_end_time" name="reg_end_time" required> 
+                </p>
+            </div>
+
+            <p>
+                <label for="emailid">
+                  <span>Your Email: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="email" id="emailid" name="host_emailid" required>
+            </p>
+
+            <p>
+                <label for="password">
+                  <span>Your Password (password length must be between 8 and 30 characters): </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="password" id="password" minlength=8 maxlength=30 name="host_password" required>
+            </p>
+
+            <hr>
+            <p>By hosting an event you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+            <button type="submit" class="hostbtn">Host</button>
+
+        </section>
+    </form>
+
+    <script>
+        let closeList = document.getElementsByClassName("close-btn");
+        let i;
+
+        for (i = 0; i < closeList.length; i++) {
+            closeList[i].onclick = function(){
+                let div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    </script>
+
+{% endblock %}

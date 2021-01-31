@@ -1,0 +1,79 @@
+
+.event-registration {
+    padding:20px;
+    margin:30px 150px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0 4px 15px 0 black;
+    text-align:center;
+}
+
+#event-list {
+    padding: 30px;
+}
+.event-registration label strong, .event-registration p strong  {
+    color: red;
+}
+
+input[type=text], input[type=url], input[type=tel], input[type=number], input[type=email], input[type=date], input[type=time], textarea {
+    padding: 15px;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=url]:focus, input[type=tel]:focus, input[type=number]:focus, input[type=email]:focus, input[type=date]:focus, input[type=time]:focus, textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  hr {
+    border: 2px solid grey;
+    margin-bottom: 25px;
+  }
+  
+  .hostbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 20px;
+    opacity: 0.9;
+  }
+  
+  .hostbtn:hover {
+    opacity: 1;
+  }
+  
+  .event-registration .timestamp {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 350px;
+  }
+
+  .event-registration .timestamp > p {
+      margin: 15px;
+  }
+
+  /* styling alert messages */
+
+  .alert {
+      padding: 20px;
+      color: white;
+      margin-bottom: 10px;
+  }
+
+  .success {
+      background-color: lightgreen;
+      border: solid 1px;
+      border-color: green;
+  }
+
+  .error {
+      background-color: lightcoral;
+      border: solid 1px;
+      border-color: red;
+  }

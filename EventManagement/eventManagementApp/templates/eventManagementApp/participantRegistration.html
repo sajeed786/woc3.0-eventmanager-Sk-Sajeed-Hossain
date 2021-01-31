@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Participant Registration
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'eventManagementApp/CSS/eventreg.css' %}">
+{% endblock %}
+
+{% block body %}
+    <section id="event-list">
+        <h2>Registrations are open for the following events</h2>
+        <br>
+        <hr>
+        {% for event in activeEvents %}
+            <div>
+                <h3>{{event.event_name}}</h3>
+                <article class="event-details">
+                    <p><h3>Description: </h3> {{event.event_description}}</p>
+                    <br>
+                    <p>
+                        <strong>Event Poster: </strong><a href='{{event.event_poster_link }}'> Link to event poster</a><br>
+                        <strong>Starts At: </strong>{{event.start_date }} - {{event.start_time}}<br>
+                        <strong>Ends At: </strong>{{event.end_date }} - {{event.end_time}}<br>
+                        <strong>Registration Ends: </strong>{{ event.registration_end_date }} - {{ event.registration_end_time }}<br>
+                        <strong>Event Venue: </strong>{{ event.venue }}<br>
+                        <hr>
+                    </p>
+                </article>
+            </div>
+        {% endfor %}
+    </section>
+    <section class="event-registration">
+        <form method="POST" action="{% url 'participantregister' %}">
+            {% csrf_token %}
+
+            <h2>Participant Registration</h2>
+            <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+            <hr>
+
+            <p>
+                <label for="name">
+                  <span>Name: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="text" id="name" name="username" required>
+            </p>
+            
+            <p>
+                <label for="contact">
+                  <span>Contact Number (Must have 10 digits with first digit as non-zero): </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="tel" id="contact" name="contact_no" pattern="[1-9]{1}[0-9]{9}" required>
+            </p>
+            
+            <p>
+                <label for="emailid">
+                  <span>Your Email: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="email" id="emailid" name="participant_emailid" required>
+            </p>
+
+            <p>
+                <label for="events">
+                  <span>Event to participate: </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <select name="events" id="events" required>
+                    {% for event in activeEvents %}
+                        <option value="{{event.event_name}}">{{event.event_name}}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            
+            <p>
+                <span>Registration Type: </span>
+                <strong><abbr title="required">*</abbr></strong>
+                
+                <input type="radio" id="individual" name="registration_type" value="individual" required>
+                <label for="individual">Individual</label>
+                <input type="radio" id="group" name="registration_type" value="group" required>
+                <label for="group">Group</label>
+            </p>
+
+            <p id="teamSize">
+                <label for="team_size">
+                  <span>No. of people (specify a number between 1 and 10): </span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="number" id="team_size" name="team_size" min="1" max="10" required>
+            </p>
+
+            <hr>
+            <p>By registering for an event you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+            <button type="submit" class="hostbtn">Register for Event</button>
+        </form>
+    </section>
+    
+    <script>
+        var size = document.getElementById("team_size");
+        if(document.getElementById("individual").checked)
+        {
+            size.value="1";
+            size.readOnly = true;
+        }
+        if(document.getElementById("group").checked)
+        {
+            size.readOnly = false;
+        }
+    </script>
+{% endblock %}
